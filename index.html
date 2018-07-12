@@ -5,12 +5,15 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Document</title>
+   <link href="assets/css/reset.css" rel="stylesheet">
+   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
    <div class="container">
       <div>Where do you want to go?
          <input id="travelWhere" placeholder="Paris, Tokyo, Seattle, etc">
       </div>
+      <br>
       <div id="travelWhen">When do you want to go?</div>
       <form action="/action_page.php">
          <select name="Month">
@@ -67,6 +70,7 @@
               <option value="2021">2021</option>
             </select>
        </form>
+       <br>
       <div>Anything in particular you'd like to do while you're there?
          <input id="travelWhat" placeholder="restaurants, museums, hiking, etc">
       </div>
@@ -74,44 +78,7 @@
       <button>Go!</button>
    </div>
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script>
-$('button').click(function (){
-  var inputWhere = $('#travelWhere').val();
-  var inputWhat = $('#travelWhat').val();
-
-  var queryURL = 'https://api.foursquare.com/v2/venues/explore'
-
-
-  $.ajax({
-    url: queryURL,
-    method: 'GET',
-    data: {
-      client_id: 'HV0FT1JGQAZQQ1EJTJK5SHJDAP0HR4IWNPVCRMSLKX4K5EGO',
-      client_secret: 'OW5SHJKGWED3MJ4ZV4BWVF5JHWNUI0FHMISHJX4Z3UTKU3YZ',
-      near: inputWhere,
-      query: inputWhat,
-      v: '20180323',
-      limit: 5
-    }
-  }, function(err, res, body) {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(body);
-    }
-  }).then(function(response) {
-    
-    console.log(response); 
-    console.log(response.response.totalResults);   
-    console.log(response.response.groups[0].items[0]); 
-    console.log(response.response.groups[0].items[0].venue);   
-    console.log(response.response.groups[0].items[0].venue.name);   
-  });
-});
-   </script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type= "text/javascript" src="assets/javascript/app.js"></script>
 </body>
 </html>
