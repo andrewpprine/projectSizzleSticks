@@ -8,10 +8,10 @@
 </head>
 <body>
    <div class="container">
-      <div id="whereTravel">Where do you want to go?
-         <input placeholder="Paris, Tokyo, Seattle, etc">
+      <div>Where do you want to go?
+         <input id="travelWhere" placeholder="Paris, Tokyo, Seattle, etc">
       </div>
-      <div id="whenTravel">When do you want to go?</div>
+      <div id="travelWhen">When do you want to go?</div>
       <form action="/action_page.php">
          <select name="Month">
            <option value="january">January</option>
@@ -67,25 +67,35 @@
               <option value="2021">2021</option>
             </select>
        </form>
-      <div id="activitiesTravel">Anything in particular you'd like to do while you're there?
-         <input placeholder="restaurants, museums, hiking, etc">
+      <div>Anything in particular you'd like to do while you're there?
+         <input id="travelWhat" placeholder="restaurants, museums, hiking, etc">
       </div>
+      <br>
+      <button>Go!</button>
    </div>
-   <script type="text/javascript">
 
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script>
 $('button').click(function (){
-  var inputWhere = $('#whereTravel').val();
-  // var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=s1ZtYEWgR2UGbcVY0dPXq32Q5gMlN9Xf&q=`+input+`&limit=10&offset=0&rating=PG-13&lang=en`
+  var inputWhere = $('#travelWhere').val();
+  var inputWhat = $('#travelWhat').val();
+
+  var queryURL = 'https://api.foursquare.com/v2/venues/explore'
+
 
   $.ajax({
-    url: queryURL
-    qs: {
-      client_id: 'CLIENT_ID',
-      client_secret: 'CLIENT_SECRET',
-      ll: '40.7243,-74.0018',
-      query: 'coffee',
+    url: queryURL,
+    method: 'GET',
+    data: {
+      client_id: 'HV0FT1JGQAZQQ1EJTJK5SHJDAP0HR4IWNPVCRMSLKX4K5EGO',
+      client_secret: 'OW5SHJKGWED3MJ4ZV4BWVF5JHWNUI0FHMISHJX4Z3UTKU3YZ',
+      near: inputWhere,
+      query: inputWhat,
       v: '20180323',
-      limit: 1
+      limit: 5
     }
   }, function(err, res, body) {
     if (err) {
@@ -93,11 +103,15 @@ $('button').click(function (){
     } else {
       console.log(body);
     }
+  }).then(function(response) {
+    
+    console.log(response); 
+    console.log(response.response.totalResults);   
+    console.log(response.response.groups[0].items[0]); 
+    console.log(response.response.groups[0].items[0].venue);   
+    console.log(response.response.groups[0].items[0].venue.name);   
   });
-//   }).then(function(response) {
-//     console.log(response);    
-//   });
-// });
+});
    </script>
 </body>
 </html>
