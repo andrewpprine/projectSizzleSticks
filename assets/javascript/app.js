@@ -1,12 +1,14 @@
+
+
 $('button').click(function (){
   var inputWhere = $('#travelWhere').val();
   var inputWhat = $('#travelWhat').val();
 
-  var queryURL = 'https://api.foursquare.com/v2/venues/explore'
+  var queryURLFoursquare = 'https://api.foursquare.com/v2/venues/explore'
 
 
   $.ajax({
-    url: queryURL,
+    url: queryURLFoursquare,
     method: 'GET',
     data: {
       client_id: 'HV0FT1JGQAZQQ1EJTJK5SHJDAP0HR4IWNPVCRMSLKX4K5EGO',
@@ -25,11 +27,13 @@ $('button').click(function (){
       console.log(body);
     }
   }).then(function(response) {
-    
-    console.log(response); 
-    console.log(response.response.totalResults);      
-    console.log(response.response.groups[0].items[0].venue.name);   
-    console.log(response.response.groups[0].items[0].venue.location.formattedAddress);   
-    $('#foursquarevenue').html(response.response.groups[0].items[0].venue.name+`<br>`+response.response.groups[0].items[0].venue.location.formattedAddress[0]+`<br>`+response.response.groups[0].items[0].venue.location.formattedAddress[1])
+    for(x=0;x<10;x++){
+      console.log(response); 
+      // console.log(response.response.totalResults);      
+      // console.log(response.response.groups[0].items[0].venue.name);   
+      // console.log(response.response.groups[0].items[0].venue.location.formattedAddress);  
+      $('#foursquarevenue').append(response.response.groups[0].items[x].venue.name+`<br>`+response.response.groups[0].items[x].venue.location.formattedAddress[0]+`<br>`+response.response.groups[0].items[x].venue.location.formattedAddress[1]+`<br><br>`);
+    }
   });
 });
+
