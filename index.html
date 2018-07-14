@@ -5,13 +5,16 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Document</title>
+   <link href="assets/css/reset.css" rel="stylesheet">
+   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
    <div class="container">
-      <div id="whereTravel">Where do you want to go?
-         <input placeholder="Paris, Tokyo, Seattle, etc">
+      <div>Where do you want to go?
+         <input id="travelWhere" placeholder="Paris, Tokyo, Seattle, etc">
       </div>
-      <div id="whenTravel">When do you want to go?</div>
+      <br>
+      <div id="travelWhen">When do you want to go?</div>
       <form action="/action_page.php">
          <select name="Month">
            <option value="january">January</option>
@@ -67,37 +70,21 @@
               <option value="2021">2021</option>
             </select>
        </form>
-      <div id="activitiesTravel">Anything in particular you'd like to do while you're there?
-         <input placeholder="restaurants, museums, hiking, etc">
+       <br>
+      <div>Anything in particular you'd like to do while you're there?
+         <input id="travelWhat" placeholder="restaurants, museums, hiking, etc">
       </div>
+      <br>
+      <button>Go!</button>
+      <br>
+      <div id="results">
+        <div id="weather"></div>
+        <div id='foursquarevenue'></div>
+      </div>
+      <br><br>
    </div>
-   <script type="text/javascript">
 
-$('button').click(function (){
-  var inputWhere = $('#whereTravel').val();
-  // var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=s1ZtYEWgR2UGbcVY0dPXq32Q5gMlN9Xf&q=`+input+`&limit=10&offset=0&rating=PG-13&lang=en`
-
-  $.ajax({
-    url: queryURL
-    qs: {
-      client_id: 'CLIENT_ID',
-      client_secret: 'CLIENT_SECRET',
-      ll: '40.7243,-74.0018',
-      query: 'coffee',
-      v: '20180323',
-      limit: 1
-    }
-  }, function(err, res, body) {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(body);
-    }
-  });
-//   }).then(function(response) {
-//     console.log(response);    
-//   });
-// });
-   </script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type= "text/javascript" src="assets/javascript/app.js"></script>
 </body>
 </html>
