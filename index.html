@@ -10,12 +10,12 @@
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 </head>
 <body>
-  <div class="jumbotron">
+  <div class="jumbotron text-center">
     <h1 class='display-4'>Next stop: <span id='destinationUnknown'>???</span><span id='destinationKnown'></span></h1>
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-3" id='tripPlanner'>
+      <div class="col-3 bg-light" id='tripPlanner'>
         <form>
           <div class="form-group">
             <label for="travelWhere">Where do you want to go?</label>
@@ -82,17 +82,19 @@
             <label for="travelWhat">Any special interestes while you're there?</label>
             <input class="form-control" id="travelWhat" placeholder='museums, parks, tacos, etc'></textarea>
           </div>
-          <button>Go!</button>
+          <button class='btn btn-success'>Go!</button>
         </form>
       </div>
       <div class='col-9'>
         <div class='row'>
           <div class='col-12' id="weather">
             <h3>Weather Forecast</h3>
-            <span>Currently</span>
-            <span>Tomorrow</span>
-            <span>Next Day</span>
-            <span>And Then</span>
+            <div class="row">
+            <div class="col-3">Today</div>
+            <div class="col-3">Tomorrow</div>
+            <div class="col-3">Day after</div>
+            <div class="col-3">And then</div>
+            </div>
           </div>
           <div class="col-6">
             <div class="row">
