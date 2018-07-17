@@ -1,38 +1,28 @@
+var city = '';
+// this is the master function that should call from all API's when run
+$('#btn btn-success').on('click', function(){
+ event.preventDefault();
+ city = ('#travelWhere').val();
 
-$('button').click(function (){
-  var inputWhere = $('#travelWhere').val();
-  var inputWhat = $('#travelWhat').val();
+ // this is the section for adding ticketmaster events to the web page
+ var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city;
+ $.ajax({
+   url: ticketMasterURL
+     }).then(function(res) {
+          for (var i=0; i< 5; i++){
+     //note this is a placeholder selector until HTML is final
+    var selector = '#activity' + i.toString();
+    $(selector).append(res._embedded.events[i].name)
+          }
+     });
 
-  var queryURLFoursquare = 'https://api.foursquare.com/v2/venues/explore'
+ // this is the section for adding a google map to the web page
+ var googleMapsURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyAXGParj76SrKimNk9-iiALLFLiQ0StCB4&q=dallas' + city;
+   $('iframe').attr('src', googleMapsURL);
+
+ // this is the section for adding weather to the web page
+ // this is the section for adding something else to thoe web page
+ // this is the section for adding sothing else
 
 
-  $.ajax({
-    url: queryURLFoursquare,
-    method: 'GET',
-    data: {
-      client_id: 'HV0FT1JGQAZQQ1EJTJK5SHJDAP0HR4IWNPVCRMSLKX4K5EGO',
-      client_secret: 'OW5SHJKGWED3MJ4ZV4BWVF5JHWNUI0FHMISHJX4Z3UTKU3YZ',
-      near: inputWhere,
-      query: inputWhat,
-      v: '20180323',
-      limit: 10
-      // time: any,
-      // day: any,
-    }
-  }, function(err, res, body) {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(body);
-    }
-  }).then(function(response) {
-    for(x=0;x<10;x++){
-      console.log(response); 
-      // console.log(response.response.totalResults);      
-      // console.log(response.response.groups[0].items[0].venue.name);   
-      // console.log(response.response.groups[0].items[0].venue.location.formattedAddress);  
-      $('#foursquarevenue').append(response.response.groups[0].items[x].venue.name+`<br>`+response.response.groups[0].items[x].venue.location.formattedAddress[0]+`<br>`+response.response.groups[0].items[x].venue.location.formattedAddress[1]+`<br><br>`);
-    }
-  });
 });
-
