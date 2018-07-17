@@ -10,8 +10,9 @@
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 </head>
 <body>
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center text-warning">
     <h1 class='display-4'>Next stop: <span id='destinationUnknown'>???</span><span id='destinationKnown'></span></h1>
+    <iframe id ="map" src="" frameborder="0"></iframe>
   </div>
   <div class="container">
     <div class="row">
@@ -23,7 +24,7 @@
           </div>
           <div class="form-group">
             <label for="travelWhen">When?</label>
-            <select id="travelWhen" class="form-control">
+            <select id="travelWhenMonth" class="form-control">
               <option selected>Month</option>
               <option>January</option>
               <option>February</option>
@@ -38,45 +39,47 @@
               <option>November</option>
               <option>December</option>
             </select>
-            <select name="Date">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-              </select>
-              <select name="Year">
-                  <option value="2018">2018</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                </select>
+            <select id="travelWhenDate" class="form-control">
+              <option selected>Date</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+            </select>
+            <select id="travelWhenYear" class="form-control">
+              <option selected>Year</option>
+              <option>2018</option>
+              <option>2019</option>
+              <option>2020</option>
+              <option>2021</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="travelWhat">Any special interestes while you're there?</label>
@@ -84,16 +87,25 @@
           </div>
           <button class='btn btn-success'>Go!</button>
         </form>
+        <hr>
+        <div>
+          Others have recently searched for:
+          <ul>
+            <li id='recentSearch1'>this place</li>
+            <li id='recentSearch2'>that place</li>
+            <li id='recentSearch3'>Matt's house</li>
+          </ul>
+        </div>
       </div>
       <div class='col-9'>
         <div class='row'>
           <div class='col-12' id="weather">
             <h3>Weather Forecast</h3>
             <div class="row">
-            <div class="col-3">Today</div>
-            <div class="col-3">Tomorrow</div>
-            <div class="col-3">Day after</div>
-            <div class="col-3">And then</div>
+            <div class="col-3">Currently: <span id='weatherNow'>72°</span></div>
+            <div class="col-3">Tomorrow: <span id='weatherTomorrow'>119°/43° Snowing</span></div>
+            <div class="col-3">Day after: <span id='weatherDayAfter'>29°/55° Snowing</span></div>
+            <div class="col-3">And then: <span id='weatherTomorrow'>66°/11° Cloudy</span></div>
             </div>
           </div>
           <div class="col-6">
