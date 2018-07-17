@@ -7,82 +7,150 @@
    <title>Document</title>
    <link href="assets/css/reset.css" rel="stylesheet">
    <link href="assets/css/style.css" rel="stylesheet">
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 </head>
 <body>
-   <div class="container">
-      <div>Where do you want to go?
-         <input id="travelWhere" placeholder="Paris, Tokyo, Seattle, etc">
-      </div>
-      <br>
-      <div id="travelWhen">When do you want to go?</div>
-      <form action="/action_page.php">
-         <select name="Month">
-           <option value="january">January</option>
-           <option value="february">February</option>
-           <option value="march">March</option>
-           <option value="april">April</option>
-           <option value="may">May</option>
-           <option value="june">June</option>
-           <option value="july">July</option>
-           <option value="august">August</option>
-           <option value="september">September</option>
-           <option value="october">Octber</option>
-           <option value="november">November</option>
-           <option value="december">December</option>
-         </select>
-         <select name="Date">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
-          </select>
-          <select name="Year">
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
+  <div class="jumbotron text-center">
+    <h1 class='display-4'>Next stop: <span id='destinationUnknown'>???</span><span id='destinationKnown'></span></h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-3 bg-light" id='tripPlanner'>
+        <form>
+          <div class="form-group">
+            <label for="travelWhere">Where do you want to go?</label>
+            <input type="email" class="form-control" id="travelWhere" placeholder="Paris, Chicago, Tokyo, etc">
+          </div>
+          <div class="form-group">
+            <label for="travelWhen">When?</label>
+            <select id="travelWhen" class="form-control">
+              <option selected>Month</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>Octber</option>
+              <option>November</option>
+              <option>December</option>
             </select>
-       </form>
-       <br>
-      <div>Anything in particular you'd like to do while you're there?
-         <input id="travelWhat" placeholder="restaurants, museums, hiking, etc">
+            <select name="Date">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+              <select name="Year">
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                </select>
+          </div>
+          <div class="form-group">
+            <label for="travelWhat">Any special interestes while you're there?</label>
+            <input class="form-control" id="travelWhat" placeholder='museums, parks, tacos, etc'></textarea>
+          </div>
+          <button class='btn btn-success'>Go!</button>
+        </form>
       </div>
-      <br>
-      <button>Go!</button>
-      <br>
-      <div id="results">
+      <div class='col-9'>
+        <div class='row'>
+          <div class='col-12' id="weather">
+            <h3>Weather Forecast</h3>
+            <div class="row">
+            <div class="col-3">Today</div>
+            <div class="col-3">Tomorrow</div>
+            <div class="col-3">Day after</div>
+            <div class="col-3">And then</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row">
+              <div class="col-12" id='flights'>
+                <h3>Flights</h3>
+                  <ul>
+                      <li>a</li>
+                      <li>b</li>
+                      <li>c</li>
+                    </ul>
+              </div>
+              <div class="col-12" id='hotels'>
+                <h3>Hotels</h3>
+                  <ul>
+                      <li>a</li>
+                      <li>b</li>
+                      <li>c</li>
+                    </ul>
+              </div>
+              <div class="col-12" id='transportation'>
+                <h3>Transportation</h3>
+                  <ul>
+                      <li>a</li>
+                      <li>b</li>
+                      <li>c</li>
+                    </ul>
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-6" id='thingsToDo'>
+            <h3>Things to do</h3>
+            <ol>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+            </ul>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+      <!-- <div id="results">
         <div id="weather"></div>
         <div id='foursquarevenue'></div>
       </div>
-      <br><br>
-   </div>
+      <br><br> -->
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type= "text/javascript" src="assets/javascript/app.js"></script>

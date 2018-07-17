@@ -1,5 +1,4 @@
 
-
 $('button').click(function (){
   var inputWhere = $('#travelWhere').val();
   var inputWhat = $('#travelWhat').val();
