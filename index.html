@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="jumbotron text-center text-warning">
-    <h1 class='display-4'>Next stop: <span id='destinationUnknown'>???</span><span id='destinationKnown'></span></h1>
+    <h1 class='display-4'><span id='destinationUnknown'>Hello, Carmen Sandiego</span><span id='destinationKnown'></span></h1>
     <iframe id ="map" src="" frameborder="0"></iframe>
   </div>
   <div class="container">
@@ -19,71 +19,13 @@
       <div class="col-3 bg-light" id='tripPlanner'>
         <form>
           <div class="form-group">
-            <label for="travelWhere">Where do you want to go?</label>
-            <input type="email" class="form-control" id="travelWhere" placeholder="Paris, Chicago, Tokyo, etc">
+            <label for="travelWhere">Where you at?</label>
+            <input class="form-control" id="travelWhere" placeholder="Paris, Chicago, Tokyo, etc">
           </div>
+          
           <div class="form-group">
-            <label for="travelWhen">When?</label>
-            <select id="travelWhenMonth" class="form-control">
-              <option selected>Month</option>
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>April</option>
-              <option>May</option>
-              <option>June</option>
-              <option>July</option>
-              <option>August</option>
-              <option>September</option>
-              <option>Octber</option>
-              <option>November</option>
-              <option>December</option>
-            </select>
-            <select id="travelWhenDate" class="form-control">
-              <option selected>Date</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              <option>24</option>
-              <option>25</option>
-              <option>26</option>
-              <option>27</option>
-              <option>28</option>
-              <option>29</option>
-              <option>30</option>
-              <option>31</option>
-            </select>
-            <select id="travelWhenYear" class="form-control">
-              <option selected>Year</option>
-              <option>2018</option>
-              <option>2019</option>
-              <option>2020</option>
-              <option>2021</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="travelWhat">Any special interestes while you're there?</label>
-            <input class="form-control" id="travelWhat" placeholder='museums, parks, tacos, etc'></textarea>
+            <label for="travelWhat">Any special interests?</label>
+            <input class="form-control" id="travelWhat" placeholder='museums, sporting events, tacos, etc'></textarea>
           </div>
           <button class='btn btn-success'>Go!</button>
         </form>
@@ -110,46 +52,38 @@
           </div>
           <div class="col-6">
             <div class="row">
-              <div class="col-12" id='flights'>
-                <h3>Flights</h3>
+              <div class="col-12" id='thingsToDo'>
+                <h3>Top special events</h3>
                   <ul>
-                      <li>a</li>
-                      <li>b</li>
-                      <li>c</li>
-                    </ul>
-              </div>
-              <div class="col-12" id='hotels'>
-                <h3>Hotels</h3>
+                    <li id='ticketmaster1'>1</li>
+                    <li id='ticketmaster2'>2</li>
+                    <li id='ticketmaster3'>3</li>
+                    <li id='ticketmaster4'>4</li>
+                    <li id='ticketmaster5'>5</li>
+                  </ul>
+                  <h3>Most popular spots</h3>
                   <ul>
-                      <li>a</li>
-                      <li>b</li>
-                      <li>c</li>
-                    </ul>
-              </div>
-              <div class="col-12" id='transportation'>
-                <h3>Transportation</h3>
-                  <ul>
-                      <li>a</li>
-                      <li>b</li>
-                      <li>c</li>
-                    </ul>
+                    <li id='foursquare1'>1</li>
+                    <li id='foursquare2'>2</li>
+                    <li id='foursquare3'>3</li>
+                    <li id='foursquare4'>4</li>
+                    <li id='foursquare5'>5</li> 
+                    <li id='foursquare6'>6</li>
+                    <li id='foursquare7'>7</li>
+                    <li id='foursquare8'>8</li>
+                    <li id='foursquare9'>9</li>
+                    <li id='foursquare10'>10</li>                          
+                  </ul>
               </div>
             </div>
             
           </div>
-          <div class="col-6" id='thingsToDo'>
-            <h3>Things to do</h3>
-            <ol>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>6</li>
-              <li>7</li>
-              <li>8</li>
-              <li>9</li>
-              <li>10</li>
+          <div class="col-6" id='transportation'>
+            <h3>Transportation</h3>
+            <ul>
+              <li>a</li>
+              <li>b</li>
+              <li>c</li>
             </ul>
           </div>
           
