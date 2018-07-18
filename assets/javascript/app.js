@@ -1,10 +1,13 @@
 var city;
 
-// this is the master function that should call from all API's when run
+// Master function to call all APIs and display results
 $('button').on('click', function(){
   $('#showAfterClick').show();
   event.preventDefault();
   city = $('#travelWhere').val();
+  //need to convert first letter to uppercase 
+  $('#destinationBanner').text(` `+city+`!`)
+
 
   // this is the section for adding ticketmaster events to the web page
   var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city;
@@ -30,36 +33,36 @@ $('button').on('click', function(){
   var openweathercurrentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
   var openweatherURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIKey;
 
- //current weather from openweather API
- $.ajax({
+  //current weather from openweather API
+  $.ajax({
   url: openweathercurrentURL,
   method: "GET"
-}).then(function(response){
-
-  var plusZero = $("<div>").text(response.weather[0].description);
-
-  $("#weather1").text(response.main.temp).append(plusZero);  
-
-});
-//forecast weather from openweather API
-$.ajax({
-    url: openweatherURL,
-    method: "GET"
   }).then(function(response){
 
-    var responseList = response.list,
-    plusOne = $("<div>").text(responseList[2].weather[0].description),
-    plusTwo= $("<div>").text(responseList[10].weather[0].description),
-    plusThree= $("<div>").text(responseList[18].weather[0].description);
+    var plusZero = $("<div>").text(response.weather[0].description);
 
-    $("#weather2").text(responseList[2].main.temp).append(plusOne);
-      
-    $("#weather3").text(responseList[10].main.temp).append(plusTwo);
-      
-    $("#weather4").text(responseList[18].main.temp).append(plusThree);
-    
+    $("#weather1").text(response.main.temp).append(plusZero);  
+
   });
-  
+//forecast weather from openweather API
+  $.ajax({
+      url: openweatherURL,
+      method: "GET"
+    }).then(function(response){
+
+      var responseList = response.list,
+      plusOne = $("<div>").text(responseList[2].weather[0].description),
+      plusTwo= $("<div>").text(responseList[10].weather[0].description),
+      plusThree= $("<div>").text(responseList[18].weather[0].description);
+
+      $("#weather2").text(responseList[2].main.temp).append(plusOne);
+        
+      $("#weather3").text(responseList[10].main.temp).append(plusTwo);
+        
+      $("#weather4").text(responseList[18].main.temp).append(plusThree);
+      
+    });
+    
   //Most popular spots from foursquare API
   var queryURLFoursquare = 'https://api.foursquare.com/v2/venues/explore';
 
