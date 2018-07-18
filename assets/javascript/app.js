@@ -5,8 +5,10 @@ $('button').on('click', function(){
   $('#showAfterClick').show();
   event.preventDefault();
   city = $('#travelWhere').val();
-  //need to convert first letter to uppercase 
-  $('#destinationBanner').text(` `+city+`!`)
+  //need to convert first letter to uppercase
+  cityUpper = city[0].toUpperCase();
+  cityLower = city.slice(1, city.length);
+  $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
 
 
   // this is the section for adding ticketmaster events to the web page
