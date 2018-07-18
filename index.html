@@ -12,7 +12,6 @@
 <body>
   <div class="jumbotron text-center text-warning">
     <h1 class='display-4'><span id='destinationUnknown'>Hello, Carmen Sandiego</span><span id='destinationKnown'></span></h1>
-    <iframe id ="map" src="" frameborder="0"></iframe>
   </div>
   <div class="container">
     <div class="row">
@@ -41,61 +40,54 @@
       </div>
       <div class='col-9'>
         <div class='row'>
+          <div class="col-12" id='map'>
+            <h3>You are here</h3>
+            <iframe id ="map" src="" frameborder="0"></iframe>
+          </div>
           <div class='col-12' id="weather">
             <h3>Weather Forecast</h3>
-            <div class="row">
-            <div class="col-3">Currently: <span id='weatherZero'>72°</span></div>
-            <div class="col-3">Tomorrow: <span id='weatherOne'>119°/43° Snowing</span></div>
-            <div class="col-3">Day after: <span id='weatherTwo'>29°/55° Snowing</span></div>
-            <div class="col-3">And then: <span id='weatherThree'>66°/11° Cloudy</span></div>
+            <div class="row text-center">
+            <div class="col-3">Currently:<br><span id='weatherZero'>72°</span></div>
+            <div class="col-3">Tomorrow:<br><span id='weatherOne'>119°/43° Snowing</span></div>
+            <div class="col-3">Day after:<br><span id='weatherDayTwo'>29°/55° Snowing</span></div>
+            <div class="col-3">And then:<br><span id='weatherThree'>66°/11° Cloudy</span></div>
             </div>
           </div>
-          <div class="col-6">
-            <div class="row">
-              <div class="col-12" id='thingsToDo'>
-                <h3>Top special events</h3>
-                  <ul>
-                    <li id='ticketmaster1'>1</li>
-                    <li id='ticketmaster2'>2</li>
-                    <li id='ticketmaster3'>3</li>
-                    <li id='ticketmaster4'>4</li>
-                    <li id='ticketmaster5'>5</li>
-                  </ul>
-                  <h3>Most popular spots</h3>
-                  <ul>
-                    <li id='foursquare1'>0</li>
-                    <li id='foursquare2'>1</li>
-                    <li id='foursquare3'>2</li>
-                    <li id='foursquare4'>3</li>
-                    <li id='foursquare5'>4</li> 
-                    <li id='foursquare6'>5</li>
-                    <li id='foursquare7'>6</li>
-                    <li id='foursquare8'>7</li>
-                    <li id='foursquare9'>8</li>                       
-                  </ul>
-              </div>
-            </div>
-            
+          <div class="col-6" id='ticketmaster'>
+            <h3>Top special events</h3>
+              <ul>
+                <li id='ticketmaster1'>1</li>
+                <li id='ticketmaster2'>2</li>
+                <li id='ticketmaster3'>3</li>
+                <li id='ticketmaster4'>4</li>
+                <li id='ticketmaster5'>5</li>
+                <li id='ticketmaster6'>6</li>
+                <li id='ticketmaster7'>7</li>
+                <li id='ticketmaster8'>8</li>
+                <li id='ticketmaster9'>9</li>
+                <li id='ticketmaster10'>10</li>
+              </ul>
           </div>
-          <div class="col-6" id='map'>
-            <h3>Transportation</h3>
+          <div class="col-6" id='foursquare'>
+            <h3>Most popular spots</h3>
             <ul>
-              <li>a</li>
-              <li>b</li>
-              <li>c</li>
+              <li id='foursquare1'>1</li>
+              <li id='foursquare2'>2</li>
+              <li id='foursquare3'>3</li>
+              <li id='foursquare4'>4</li>
+              <li id='foursquare5'>5</li> 
+              <li id='foursquare6'>6</li>
+              <li id='foursquare7'>7</li>
+              <li id='foursquare8'>8</li>
+              <li id='foursquare9'>9</li>
+              <li id='foursquare10'>10</li>                          
             </ul>
           </div>
-          
-          
         </div>
       </div>
     </div>
   </div>
-      <!-- <div id="results">
-        <div id="weather"></div>
-        <div id='foursquarevenue'></div>
-      </div>
-      <br><br> -->
+      
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type= "text/javascript" src="assets/javascript/app.js"></script>
