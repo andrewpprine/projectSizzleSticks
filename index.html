@@ -8,6 +8,7 @@
    <link href="assets/css/reset.css" rel="stylesheet">
    <link href="assets/css/style.css" rel="stylesheet">
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
   <div class="jumbotron text-center text-warning">
@@ -38,7 +39,7 @@
           </ul>
         </div>
       </div>
-      <div class='col-9'>
+      <div class='col-9' id='showAfterClick'>
         <div class='row'>
           <div class="col-12" id='map'>
             <h3>You are here</h3>
@@ -47,10 +48,10 @@
           <div class='col-12' id="weather">
             <h3>Weather Forecast</h3>
             <div class="row text-center">
-            <div class="col-3">Currently:<br><span id='weatherZero'>72°</span></div>
-            <div class="col-3">Tomorrow:<br><span id='weatherOne'>119°/43° Snowing</span></div>
-            <div class="col-3">Day after:<br><span id='weatherDayTwo'>29°/55° Snowing</span></div>
-            <div class="col-3">And then:<br><span id='weatherThree'>66°/11° Cloudy</span></div>
+            <div class="col-3">Currently:<br><span id='weather1'></span></div>
+            <div class="col-3">Tomorrow:<br><span id='weather2'></span></div>
+            <div class="col-3">Day after:<br><span id='weather3'></span></div>
+            <div class="col-3">And then:<br><span id='weather4'></span></div>
             </div>
           </div>
           <div class="col-6" id='ticketmaster'>

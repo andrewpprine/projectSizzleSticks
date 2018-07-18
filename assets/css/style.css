@@ -11,3 +11,10 @@
    url("../images/globe.gif");
 
 }
+
+body {
+  font-family: 'Open Sans', sans-serif !important;
+}
+ #showAfterClick {
+   display: none;
+ }
