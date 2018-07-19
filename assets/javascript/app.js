@@ -40,15 +40,13 @@ $('button').on('click', function(){
   var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city + '&classificationName='+ inputWhat;
   $.ajax({
     url: ticketMasterURL
-      }).then(function(res) {
-        console.log(res);
-            for (var i=0; i<10; i++){
-      //note this is a placeholder selector until HTML is final
+    }).then(function(res) {
+      for (var i=0; i<10; i++){
       
       var selector = '#ticketmaster' + i.toString();
-      $(selector).html(res._embedded.events[i].name)
-            }
-      });
+      $(selector).html(res._embedded.events[i].name+`<br>`+res._embedded.events[i].dates.start.localDate+`<br>`+res._embedded.events[i].dates.start.localTime+`<br><a href="`+res._embedded.events[i].url+`">Tickets</a>`)
+      }
+    });
 
   // this is the section for adding a google map to the web page
   var googleMapsURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyAXGParj76SrKimNk9-iiALLFLiQ0StCB4&q=' + city;
