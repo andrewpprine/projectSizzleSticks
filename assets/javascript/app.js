@@ -23,10 +23,11 @@ $('button').on('click', function(){
 
   inputWhat = $('#travelWhat').val();
   city = $('#travelWhere').val();
+
   //need to convert first letter to uppercase
-  var cityUpper = city[0].toUpperCase();
-  var cityLower = city.slice(1, city.length);
-  $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
+  // var cityUpper = city[0].toUpperCase();
+  // var cityLower = city.slice(1, city.length);
+  // $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
 
   //shitty firebase - uploading
   database.ref(city).push({
@@ -109,7 +110,8 @@ $('button').on('click', function(){
       console.log(body);
     }
   }).then(function(response) {
-
+    console.log(response);
+    $('#destinationBanner').text(` `+response.response.headerFullLocation+`!`)
     for(x=0;x<10;x++){
       var selector = '#foursquare' + x.toString();      
       var newList = $("<li>").text(response.response.groups[0].items[x].venue.name);
