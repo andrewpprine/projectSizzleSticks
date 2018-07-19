@@ -53,15 +53,15 @@ $('button').on('click', function(){
     }).then(function(response){
 
       var responseList = response.list,
-      plusOne = $("<div>").text(responseList[2].weather[0].description),
-      plusTwo= $("<div>").text(responseList[10].weather[0].description),
-      plusThree= $("<div>").text(responseList[18].weather[0].description);
-
-      $("#weather2").text(responseList[2].main.temp).append(plusOne);
+      plusOne = $("<div>").text(responseList[5].weather[0].description),
+      plusTwo= $("<div>").text(responseList[13].weather[0].description),
+      plusThree= $("<div>").text(responseList[21].weather[0].description);
+      
+      $("#weather2").text(responseList[5].main.temp).append(plusOne);
         
-      $("#weather3").text(responseList[10].main.temp).append(plusTwo);
+      $("#weather3").text(responseList[13].main.temp).append(plusTwo);
         
-      $("#weather4").text(responseList[18].main.temp).append(plusThree);
+      $("#weather4").text(responseList[21].main.temp).append(plusThree);
       
     });
     
