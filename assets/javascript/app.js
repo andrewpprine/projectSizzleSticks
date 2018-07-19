@@ -12,15 +12,16 @@ $('button').on('click', function(){
 
 
   // this is the section for adding ticketmaster events to the web page
-  var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city;
+  var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city;
   $.ajax({
     url: ticketMasterURL
       }).then(function(res) {
-        console.log(response);
+        console.log(res);
             for (var i=0; i<10; i++){
       //note this is a placeholder selector until HTML is final
+      
       var selector = '#ticketmaster' + i.toString();
-      $(selector).append(res._embedded.events[i].name)
+      $(selector).html(res._embedded.events[i].name)
             }
       });
 
@@ -28,10 +29,7 @@ $('button').on('click', function(){
   var googleMapsURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyAXGParj76SrKimNk9-iiALLFLiQ0StCB4&q=' + city;
     $('iframe').attr('src', googleMapsURL);
 
-  // this is the section for adding weather to the web page
-  // this is the section for adding something else to thoe web page
-  // this is the section for adding sothing else
-
+  //weather api setup
   var APIKey = "8b2d45874149dd9daa82ef8b500f490d";
   var openweathercurrentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
   var openweatherURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIKey;
@@ -41,7 +39,6 @@ $('button').on('click', function(){
   url: openweathercurrentURL,
   method: "GET"
   }).then(function(response){
-console.log(response);
     var plusZero = $("<div>").text(response.weather[0].description);
 
     $("#weather1").text(response.main.temp).append(plusZero);  
@@ -52,7 +49,6 @@ console.log(response);
       url: openweatherURL,
       method: "GET"
     }).then(function(response){
-console.log(response);
       var responseList = response.list;
       var plusOne = $("<div>").text(responseList[2].weather[0].description);
       var plusTwo= $("<div>").text(responseList[10].weather[0].description);
@@ -82,8 +78,6 @@ console.log(response);
       query: inputWhat,
       v: '20180323',
       limit: 10
-      // time: any,
-      // day: any,
     }
   }, function(err, res, body) {
     if (err) {
@@ -92,7 +86,6 @@ console.log(response);
       console.log(body);
     }
   }).then(function(response) {
-    console.log(response);
 
     for(x=0;x<10;x++){
       var selector = '#foursquare' + x.toString();      
