@@ -16,6 +16,7 @@ $('button').on('click', function(){
   $.ajax({
     url: ticketMasterURL
       }).then(function(res) {
+        console.log(response);
             for (var i=0; i<10; i++){
       //note this is a placeholder selector until HTML is final
       var selector = '#ticketmaster' + i.toString();
@@ -24,7 +25,7 @@ $('button').on('click', function(){
       });
 
   // this is the section for adding a google map to the web page
-  var googleMapsURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyAXGParj76SrKimNk9-iiALLFLiQ0StCB4&q=dallas' + city;
+  var googleMapsURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyAXGParj76SrKimNk9-iiALLFLiQ0StCB4&q=' + city;
     $('iframe').attr('src', googleMapsURL);
 
   // this is the section for adding weather to the web page
@@ -40,7 +41,7 @@ $('button').on('click', function(){
   url: openweathercurrentURL,
   method: "GET"
   }).then(function(response){
-
+console.log(response);
     var plusZero = $("<div>").text(response.weather[0].description);
 
     $("#weather1").text(response.main.temp).append(plusZero);  
@@ -51,7 +52,7 @@ $('button').on('click', function(){
       url: openweatherURL,
       method: "GET"
     }).then(function(response){
-
+console.log(response);
       var responseList = response.list,
       plusOne = $("<div>").text(responseList[2].weather[0].description),
       plusTwo= $("<div>").text(responseList[10].weather[0].description),
