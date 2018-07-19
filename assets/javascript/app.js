@@ -6,8 +6,8 @@ $('button').on('click', function(){
   event.preventDefault();
   city = $('#travelWhere').val();
   //need to convert first letter to uppercase
-  cityUpper = city[0].toUpperCase();
-  cityLower = city.slice(1, city.length);
+  var cityUpper = city[0].toUpperCase();
+  var cityLower = city.slice(1, city.length);
   $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
 
 
@@ -53,10 +53,10 @@ console.log(response);
       method: "GET"
     }).then(function(response){
 console.log(response);
-      var responseList = response.list,
-      plusOne = $("<div>").text(responseList[2].weather[0].description),
-      plusTwo= $("<div>").text(responseList[10].weather[0].description),
-      plusThree= $("<div>").text(responseList[18].weather[0].description);
+      var responseList = response.list;
+      var plusOne = $("<div>").text(responseList[2].weather[0].description);
+      var plusTwo= $("<div>").text(responseList[10].weather[0].description);
+      var plusThree= $("<div>").text(responseList[18].weather[0].description);
 
       $("#weather2").text(responseList[2].main.temp).append(plusOne);
         
