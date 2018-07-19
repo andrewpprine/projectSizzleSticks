@@ -1,36 +1,58 @@
+var config = {
+  apiKey: "AIzaSyCRAI-cE-9zuAVQGV9R4I3H7Bh4O95gEps",
+  authDomain: "sizzlesticks-11ea4.firebaseapp.com",
+  databaseURL: "https://sizzlesticks-11ea4.firebaseio.com",
+  projectId: "sizzlesticks-11ea4",
+  storageBucket: "",
+  messagingSenderId: "846634235529"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+
+
 var city;
+var inputWhat;
+var inputWhere;
 
 // Master function to call all APIs and display results
 $('button').on('click', function(){
   $('#showAfterClick').show();
   event.preventDefault();
+
+  inputWhat = $('#travelWhat').val();
   city = $('#travelWhere').val();
   //need to convert first letter to uppercase
-  cityUpper = city[0].toUpperCase();
-  cityLower = city.slice(1, city.length);
+  var cityUpper = city[0].toUpperCase();
+  var cityLower = city.slice(1, city.length);
   $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
 
+  //shitty firebase
+  database.ref().set({
+    pancake: city
+  });
 
+  
   // this is the section for adding ticketmaster events to the web page
-  var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city;
+  var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city + '&classificationName='+ inputWhat;
   $.ajax({
     url: ticketMasterURL
       }).then(function(res) {
+        console.log(res);
             for (var i=0; i<10; i++){
       //note this is a placeholder selector until HTML is final
+      
       var selector = '#ticketmaster' + i.toString();
-      $(selector).append(res._embedded.events[i].name)
+      $(selector).html(res._embedded.events[i].name)
             }
       });
 
   // this is the section for adding a google map to the web page
-  var googleMapsURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyAXGParj76SrKimNk9-iiALLFLiQ0StCB4&q=dallas' + city;
+  var googleMapsURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyAXGParj76SrKimNk9-iiALLFLiQ0StCB4&q=' + city;
     $('iframe').attr('src', googleMapsURL);
 
-  // this is the section for adding weather to the web page
-  // this is the section for adding something else to thoe web page
-  // this is the section for adding sothing else
-
+  //weather api setup
   var APIKey = "8b2d45874149dd9daa82ef8b500f490d";
   var openweathercurrentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
   var openweatherURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + APIKey;
@@ -40,7 +62,6 @@ $('button').on('click', function(){
   url: openweathercurrentURL,
   method: "GET"
   }).then(function(response){
-
     var plusZero = $("<div>").text(response.weather[0].description);
 
     $("#weather1").text(response.main.temp).append(plusZero);  
@@ -52,11 +73,11 @@ $('button').on('click', function(){
       method: "GET"
     }).then(function(response){
 
-      var responseList = response.list,
-      plusOne = $("<div>").text(responseList[5].weather[0].description),
-      plusTwo= $("<div>").text(responseList[13].weather[0].description),
-      plusThree= $("<div>").text(responseList[21].weather[0].description);
-      
+      var responseList = response.list;
+      var plusOne = $("<div>").text(responseList[2].weather[0].description);
+      var plusTwo= $("<div>").text(responseList[10].weather[0].description);
+      var plusThree= $("<div>").text(responseList[18].weather[0].description);
+
       $("#weather2").text(responseList[5].main.temp).append(plusOne);
         
       $("#weather3").text(responseList[13].main.temp).append(plusTwo);
@@ -68,8 +89,7 @@ $('button').on('click', function(){
   //Most popular spots from foursquare API
   var queryURLFoursquare = 'https://api.foursquare.com/v2/venues/explore';
 
-  var inputWhere = $('#travelWhere').val();
-  var inputWhat = $('#travelWhat').val();
+  inputWhere = $('#travelWhere').val();
 
   $.ajax({
     url: queryURLFoursquare,
@@ -77,12 +97,10 @@ $('button').on('click', function(){
     data: {
       client_id: 'HV0FT1JGQAZQQ1EJTJK5SHJDAP0HR4IWNPVCRMSLKX4K5EGO',
       client_secret: 'OW5SHJKGWED3MJ4ZV4BWVF5JHWNUI0FHMISHJX4Z3UTKU3YZ',
-      near: inputWhere,
+      near: city,
       query: inputWhat,
       v: '20180323',
       limit: 10
-      // time: any,
-      // day: any,
     }
   }, function(err, res, body) {
     if (err) {
@@ -91,7 +109,6 @@ $('button').on('click', function(){
       console.log(body);
     }
   }).then(function(response) {
-    console.log(response);
 
     for(x=0;x<10;x++){
       var selector = '#foursquare' + x.toString();      
