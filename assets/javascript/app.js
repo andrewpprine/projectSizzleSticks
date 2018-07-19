@@ -1,18 +1,41 @@
+var config = {
+  apiKey: "AIzaSyCRAI-cE-9zuAVQGV9R4I3H7Bh4O95gEps",
+  authDomain: "sizzlesticks-11ea4.firebaseapp.com",
+  databaseURL: "https://sizzlesticks-11ea4.firebaseio.com",
+  projectId: "sizzlesticks-11ea4",
+  storageBucket: "",
+  messagingSenderId: "846634235529"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+
+
 var city;
+var inputWhat;
+var inputWhere;
 
 // Master function to call all APIs and display results
 $('button').on('click', function(){
   $('#showAfterClick').show();
   event.preventDefault();
+
+  inputWhat = $('#travelWhat').val();
   city = $('#travelWhere').val();
   //need to convert first letter to uppercase
   var cityUpper = city[0].toUpperCase();
   var cityLower = city.slice(1, city.length);
   $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
 
+  //shitty firebase
+  database.ref().set({
+    pancake: city
+  });
 
+  
   // this is the section for adding ticketmaster events to the web page
-  var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city;
+  var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city + '&classificationName='+ inputWhat;
   $.ajax({
     url: ticketMasterURL
       }).then(function(res) {
@@ -65,8 +88,7 @@ $('button').on('click', function(){
   //Most popular spots from foursquare API
   var queryURLFoursquare = 'https://api.foursquare.com/v2/venues/explore';
 
-  var inputWhere = $('#travelWhere').val();
-  var inputWhat = $('#travelWhat').val();
+  inputWhere = $('#travelWhere').val();
 
   $.ajax({
     url: queryURLFoursquare,
@@ -74,7 +96,7 @@ $('button').on('click', function(){
     data: {
       client_id: 'HV0FT1JGQAZQQ1EJTJK5SHJDAP0HR4IWNPVCRMSLKX4K5EGO',
       client_secret: 'OW5SHJKGWED3MJ4ZV4BWVF5JHWNUI0FHMISHJX4Z3UTKU3YZ',
-      near: inputWhere,
+      near: city,
       query: inputWhat,
       v: '20180323',
       limit: 10
