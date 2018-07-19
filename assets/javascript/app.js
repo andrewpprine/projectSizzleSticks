@@ -114,9 +114,8 @@ $('button').on('click', function(){
     $('#destinationBanner').text(` `+response.response.headerFullLocation+`!`)
     for(x=0;x<10;x++){
       var selector = '#foursquare' + x.toString();      
-      var newList = $("<li>").text(response.response.groups[0].items[x].venue.name);
+      var newList = $("<li>").html(response.response.groups[0].items[x].venue.name+`<br>`+response.response.groups[0].items[x].venue.location.address+`<br>`+response.response.groups[0].items[x].venue.location.formattedAddress[1]);
       $(selector).html(newList);
-      
     }
   });
 });
