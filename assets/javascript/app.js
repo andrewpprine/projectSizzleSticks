@@ -28,10 +28,12 @@ $('button').on('click', function(){
   var cityLower = city.slice(1, city.length);
   $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
 
-  //shitty firebase
-  database.ref().set({
-    pancake: city
+  //shitty firebase - uploading
+  database.ref(city).push({
+    search: $('#travelWhat').val().trim()
   });
+
+  //downloading the shitty firebase
 
   
   // this is the section for adding ticketmaster events to the web page
@@ -74,9 +76,9 @@ $('button').on('click', function(){
     }).then(function(response){
 
       var responseList = response.list;
-      var plusOne = $("<div>").text(responseList[2].weather[0].description);
-      var plusTwo= $("<div>").text(responseList[10].weather[0].description);
-      var plusThree= $("<div>").text(responseList[18].weather[0].description);
+      var plusOne = $("<div>").text(responseList[5].weather[0].description);
+      var plusTwo= $("<div>").text(responseList[13].weather[0].description);
+      var plusThree= $("<div>").text(responseList[21].weather[0].description);
 
       $("#weather2").text(responseList[5].main.temp).append(plusOne);
         
