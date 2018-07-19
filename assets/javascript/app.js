@@ -72,16 +72,17 @@ $('button').on('click', function(){
       url: openweatherURL,
       method: "GET"
     }).then(function(response){
+
       var responseList = response.list;
       var plusOne = $("<div>").text(responseList[2].weather[0].description);
       var plusTwo= $("<div>").text(responseList[10].weather[0].description);
       var plusThree= $("<div>").text(responseList[18].weather[0].description);
 
-      $("#weather2").text(responseList[2].main.temp).append(plusOne);
+      $("#weather2").text(responseList[5].main.temp).append(plusOne);
         
-      $("#weather3").text(responseList[10].main.temp).append(plusTwo);
+      $("#weather3").text(responseList[13].main.temp).append(plusTwo);
         
-      $("#weather4").text(responseList[18].main.temp).append(plusThree);
+      $("#weather4").text(responseList[21].main.temp).append(plusThree);
       
     });
     
