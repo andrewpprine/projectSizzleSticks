@@ -33,7 +33,26 @@ $('button').on('click', function(){
     search: $('#travelWhat').val().trim()
   });
 
-  //downloading the shitty firebase
+  //Saves search in location child in the shitty firebase and appends the save to the firebase-data div.
+
+  var locationRef = database.ref("/Location");
+
+  locationRef.set({
+    city: city
+  });
+
+  var location; 
+
+  locationRef.on("value", function(snapshot) {
+
+  // need to figure out how to avoid multiple copies of a search
+    location = snapshot.val().city;
+    var locationDiv = $("<div>").text(location);
+    $("#firebase-data").append(locationDiv);
+    
+   }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+   });
 
   
   // this is the section for adding ticketmaster events to the web page
