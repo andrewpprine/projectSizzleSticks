@@ -37,7 +37,6 @@ $('button').on('click', function(){
     var str = snapshot.val();
     for (var key in str) {
       if (str.hasOwnProperty(key)) {
-        console.log(key);
         var newDiv= $("<div>").text(key);
         $("#firebase-data").append(newDiv);
       }
@@ -76,6 +75,40 @@ $('button').on('click', function(){
 
     $("#weather1").text(response.main.temp).append(plusZero);  
 
+    //forecast weather icons for current day
+    var check = $("#weather1" + " div").text();
+
+    if(check == "clear sky"){
+      var icon = $("<i>").attr("class","wi wi-day-sunny");
+      
+      $("#weather1").append(icon);
+      }
+      else if((check == "light rain")||(check == "shower rain")||(check == "moderate rain")){
+      var icon = $("<i>").attr("class","wi wi-day-rain");
+    
+      $("#weather1").append(icon);
+      }
+      else if(check == "mist"){
+      var icon = $("<i>").attr("class","wi wi-day-haze");
+  
+      $("#weather1").append(icon);
+      }
+      else if((check == "broken clouds")||(check == "scattered clouds")||(check == "overcast clouds")||(check == "few clouds")){
+      var icon = $("<i>").attr("class","wi wi-day-cloudy");
+
+      $("#weather1").append(icon);
+      }
+      else if(check == "snow"){
+      var icon = $("<i>").attr("class","wi wi-day-snow");
+
+      $("#weather1").append(icon);
+      }
+      else if(check == "thunderstorm"){
+        var icon = $("<i>").attr("class","wi wi-day-thunderstorm");
+
+        $("#weather1").append(icon);
+        }
+
   });
 //forecast weather from openweather API
   $.ajax({
@@ -84,15 +117,57 @@ $('button').on('click', function(){
     }).then(function(response){
 
       var responseList = response.list;
-      var plusOne = $("<div>").text(responseList[5].weather[0].description);
-      var plusTwo= $("<div>").text(responseList[13].weather[0].description);
-      var plusThree= $("<div>").text(responseList[21].weather[0].description);
+      var strTwo =responseList[5].weather[0].description.toString();
+      var strThree =responseList[13].weather[0].description.toString();
+      var strFour =responseList[21].weather[0].description.toString();
+
+      var plusOne = $("<div>").text(strTwo);
+      var plusTwo= $("<div>").text(strThree);
+      var plusThree= $("<div>").text(strFour);
 
       $("#weather2").text(responseList[5].main.temp).append(plusOne);
         
       $("#weather3").text(responseList[13].main.temp).append(plusTwo);
         
       $("#weather4").text(responseList[21].main.temp).append(plusThree);
+
+      //displays weather icons for forecasted days 
+      for(x=2; x<5; x++){
+        var check = $("#weather"+ x + " div").text();
+
+        if(check == "clear sky"){
+        var icon = $("<i>").attr("class","wi wi-day-sunny");
+        
+        $("#weather"+ x).append(icon);
+        }
+        else if((check == "light rain")||(check == "shower rain")||(check == "moderate rain")){
+        var icon = $("<i>").attr("class","wi wi-day-rain");
+      
+        $("#weather"+ x).append(icon);
+        }
+        else if(check == "mist"){
+        var icon = $("<i>").attr("class","wi wi-day-haze");
+    
+        $("#weather"+ x).append(icon);
+        }
+        else if((check == "broken clouds")||(check == "scattered clouds")||(check == "overcast clouds")||(check == "few clouds")){
+        var icon = $("<i>").attr("class","wi wi-day-cloudy");
+  
+        $("#weather"+ x).append(icon);
+        }
+        else if(check == "snow"){
+        var icon = $("<i>").attr("class","wi wi-day-snow");
+
+        $("#weather"+ x).append(icon);
+        }
+        else if(check == "thunderstorm"){
+          var icon = $("<i>").attr("class","wi wi-day-thunderstorm");
+  
+          $("#weather"+ x).append(icon);
+          }
+        
+      }
+  
       
     });
     
