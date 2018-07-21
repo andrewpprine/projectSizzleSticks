@@ -9,12 +9,10 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-
-
-
 var city;
 var inputWhat;
 var inputWhere;
+var searched =[];
 
 // Master function to call all APIs and display results
 $('button').on('click', function(){
@@ -41,15 +39,27 @@ $('button').on('click', function(){
     city: city
   });
 
-  var location; 
-
+  var location;
+  
   locationRef.on("value", function(snapshot) {
 
   // need to figure out how to avoid multiple copies of a search
     location = snapshot.val().city;
-    var locationDiv = $("<div>").text(location);
-    $("#firebase-data").append(locationDiv);
     
+    if(searched.indexOf(location) == -1){
+      
+      searched.push(location);
+      
+      for(x=0;x<searched.length; x++){
+      var searchedLoc = searched[x];
+      }
+      var locationDiv = $("<div>").text(searchedLoc);
+      $("#firebase-data").append(locationDiv);
+    }
+    else{
+      console.log("still works")
+    }
+
    }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
    });
@@ -60,7 +70,6 @@ $('button').on('click', function(){
   $.ajax({
     url: ticketMasterURL
       }).then(function(res) {
-        console.log(res);
             for (var i=0; i<10; i++){
       //note this is a placeholder selector until HTML is final
       
