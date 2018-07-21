@@ -8,7 +8,7 @@ APIs called:
 - OpenWeatherMap
 - Foursquare
 - Ticketmaster
-- Firebase results also displayed.
+Firebase results also displayed.
 
 ## Use
 
