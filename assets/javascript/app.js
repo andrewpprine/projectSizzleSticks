@@ -18,7 +18,6 @@ var searched =[];
 $('button').on('click', function(){
   $('#showAfterClick').show();
   event.preventDefault();
-
   inputWhat = $('#travelWhat').val();
   city = $('#travelWhere').val();
 
@@ -31,6 +30,8 @@ $('button').on('click', function(){
 
   database.ref().on("value", function(snapshot){
     var str = snapshot.val();
+    $("#firebase-data").html("");
+
     for (var key in str) {
       if (str.hasOwnProperty(key)) {
         var newDiv= $("<div>").text(key);
