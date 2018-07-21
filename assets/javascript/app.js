@@ -9,12 +9,10 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-
-
-
 var city;
 var inputWhat;
 var inputWhere;
+var searched =[];
 
 // Master function to call all APIs and display results
 $('button').on('click', function(){
@@ -34,16 +32,26 @@ $('button').on('click', function(){
     search: $('#travelWhat').val().trim()
   });
 
-  //downloading the shitty firebase
+  //Saves search in location child in the shitty firebase and appends the save to the firebase-data div.
 
-  
+  database.ref().on("value", function(snapshot){
+    var str = snapshot.val();
+    for (var key in str) {
+      if (str.hasOwnProperty(key)) {
+        console.log(key);
+        var newDiv= $("<div>").text(key);
+        $("#firebase-data").append(newDiv);
+      }
+    }
+    
+  });
+
   // this is the section for adding ticketmaster events to the web page
   var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city + '&classificationName='+ inputWhat;
   $.ajax({
     url: ticketMasterURL
     }).then(function(res) {
-      for (var i=0; i<10; i++){
-      
+      for (var i=0; i<10; i++){   
       var selector = '#ticketmaster' + i.toString();
       $(selector).html(res._embedded.events[i].name+`<br>`+res._embedded.events[i].dates.start.localDate+`<br>`+res._embedded.events[i].dates.start.localTime+`<br><a href="`+res._embedded.events[i].url+`">Tickets</a>`)
       }
