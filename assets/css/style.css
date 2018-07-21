@@ -9,6 +9,7 @@
       rgba(0, 0, 0, 0.7)
     ),
    url("../images/globe.gif");
+   background-size: cover;
 
 }
 
