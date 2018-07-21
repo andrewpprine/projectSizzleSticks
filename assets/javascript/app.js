@@ -22,11 +22,6 @@ $('button').on('click', function(){
   inputWhat = $('#travelWhat').val();
   city = $('#travelWhere').val();
 
-  //need to convert first letter to uppercase
-  // var cityUpper = city[0].toUpperCase();
-  // var cityLower = city.slice(1, city.length);
-  // $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
-
   //shitty firebase - uploading
   database.ref(city).push({
     search: $('#travelWhat').val().trim()
@@ -52,7 +47,7 @@ $('button').on('click', function(){
     }).then(function(res) {
       for (var i=0; i<10; i++){   
       var selector = '#ticketmaster' + i.toString();
-      $(selector).html(res._embedded.events[i].name+`<br>`+res._embedded.events[i].dates.start.localDate+`<br>`+res._embedded.events[i].dates.start.localTime+`<br><a href="`+res._embedded.events[i].url+`">Tickets</a>`)
+      $(selector).html(res._embedded.events[i].name+`<br>`+res._embedded.events[i].dates.start.localDate+`<br>`+res._embedded.events[i].dates.start.localTime+`<br><a href="`+res._embedded.events[i].url+`">Tickets</a><hr>`)
       }
     });
 
@@ -197,7 +192,7 @@ $('button').on('click', function(){
     $('#destinationBanner').text(` `+response.response.headerFullLocation+`!`)
     for(x=0;x<10;x++){
       var selector = '#foursquare' + x.toString();      
-      var newList = $("<li>").html(response.response.groups[0].items[x].venue.name+`<br>`+response.response.groups[0].items[x].venue.location.address+`<br>`+response.response.groups[0].items[x].venue.location.formattedAddress[1]+`<br><a href="https://www.yelp.com/search?find_desc=`+response.response.groups[0].items[x].venue.name+`&find_loc=`+response.response.groups[0].items[x].venue.location.address+` `+response.response.headerFullLocation+`" target="_blank">Reviews</a>`);
+      var newList = $("<li>").html(response.response.groups[0].items[x].venue.name+`<br>`+response.response.groups[0].items[x].venue.location.address+`<br>`+response.response.groups[0].items[x].venue.location.formattedAddress[1]+`<br><a href="https://www.yelp.com/search?find_desc=`+response.response.groups[0].items[x].venue.name+`&find_loc=`+response.response.groups[0].items[x].venue.location.address+` `+response.response.headerFullLocation+`" target="_blank">Reviews</a><hr>`);
       $(selector).html(newList);
     }
   });
