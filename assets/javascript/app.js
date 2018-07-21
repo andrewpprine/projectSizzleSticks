@@ -21,10 +21,11 @@ $('button').on('click', function(){
 
   inputWhat = $('#travelWhat').val();
   city = $('#travelWhere').val();
+
   //need to convert first letter to uppercase
-  var cityUpper = city[0].toUpperCase();
-  var cityLower = city.slice(1, city.length);
-  $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
+  // var cityUpper = city[0].toUpperCase();
+  // var cityLower = city.slice(1, city.length);
+  // $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
 
   //shitty firebase - uploading
   database.ref(city).push({
@@ -49,14 +50,12 @@ $('button').on('click', function(){
   var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city + '&classificationName='+ inputWhat;
   $.ajax({
     url: ticketMasterURL
-      }).then(function(res) {
-            for (var i=0; i<10; i++){
-      //note this is a placeholder selector until HTML is final
-      
+    }).then(function(res) {
+      for (var i=0; i<10; i++){   
       var selector = '#ticketmaster' + i.toString();
-      $(selector).html(res._embedded.events[i].name)
-            }
-      });
+      $(selector).html(res._embedded.events[i].name+`<br>`+res._embedded.events[i].dates.start.localDate+`<br>`+res._embedded.events[i].dates.start.localTime+`<br><a href="`+res._embedded.events[i].url+`">Tickets</a>`)
+      }
+    });
 
   // this is the section for adding a google map to the web page
   var googleMapsURL = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyAXGParj76SrKimNk9-iiALLFLiQ0StCB4&q=' + city;
@@ -119,12 +118,12 @@ $('button').on('click', function(){
       console.log(body);
     }
   }).then(function(response) {
-
+    console.log(response);
+    $('#destinationBanner').text(` `+response.response.headerFullLocation+`!`)
     for(x=0;x<10;x++){
       var selector = '#foursquare' + x.toString();      
-      var newList = $("<li>").text(response.response.groups[0].items[x].venue.name);
+      var newList = $("<li>").html(response.response.groups[0].items[x].venue.name+`<br>`+response.response.groups[0].items[x].venue.location.address+`<br>`+response.response.groups[0].items[x].venue.location.formattedAddress[1]+`<br><a href="https://www.yelp.com/search?find_desc=`+response.response.groups[0].items[x].venue.name+`&find_loc=`+response.response.groups[0].items[x].venue.location.address+` `+response.response.headerFullLocation+`" target="_blank">Reviews</a>`);
       $(selector).html(newList);
-      
     }
   });
 });

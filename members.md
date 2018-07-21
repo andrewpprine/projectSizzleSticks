@@ -1,4 +1,3 @@
 Andrew Prine
 Ari Siegel
-Matthew Chen 
-Bob
+Matthew Chen
