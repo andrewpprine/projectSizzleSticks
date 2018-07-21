@@ -33,38 +33,18 @@ $('button').on('click', function(){
 
   //Saves search in location child in the shitty firebase and appends the save to the firebase-data div.
 
-  var locationRef = database.ref("/Location");
-
-  locationRef.set({
-    city: city
+  database.ref().on("value", function(snapshot){
+    var str = snapshot.val();
+    for (var key in str) {
+      if (str.hasOwnProperty(key)) {
+        console.log(key);
+        var newDiv= $("<div>").text(key);
+        $("#firebase-data").append(newDiv);
+      }
+    }
+    
   });
 
-  var location;
-  
-  locationRef.on("value", function(snapshot) {
-
-  // need to figure out how to avoid multiple copies of a search
-    location = snapshot.val().city;
-    
-    if(searched.indexOf(location) == -1){
-      
-      searched.push(location);
-      
-      for(x=0;x<searched.length; x++){
-      var searchedLoc = searched[x];
-      }
-      var locationDiv = $("<div>").text(searchedLoc);
-      $("#firebase-data").append(locationDiv);
-    }
-    else{
-      console.log("still works")
-    }
-
-   }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
-   });
-
-  
   // this is the section for adding ticketmaster events to the web page
   var ticketMasterURL = 'https://app.ticketmaster.com/discovery/v2/events.json?size=10&apikey=afo4Ma9VAh5dmYQLIfzmuB2zOS0PQXVK&city=' + city + '&classificationName='+ inputWhat;
   $.ajax({
