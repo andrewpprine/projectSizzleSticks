@@ -22,11 +22,6 @@ $('button').on('click', function(){
   inputWhat = $('#travelWhat').val();
   city = $('#travelWhere').val();
 
-  //need to convert first letter to uppercase
-  // var cityUpper = city[0].toUpperCase();
-  // var cityLower = city.slice(1, city.length);
-  // $('#destinationBanner').text(` `+cityUpper+cityLower+`!`)
-
   //shitty firebase - uploading
   database.ref(city).push({
     search: $('#travelWhat').val().trim()
